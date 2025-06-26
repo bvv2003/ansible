@@ -1,0 +1,10 @@
+---
+- name: Wake up multiple PCs via WoL
+  hosts: wol_hosts
+  gather_facts: false
+  tasks:
+    - name: Send WoL packet
+      community.general.wakeonlan:
+        mac: "{{ mac }}"
+        broadcast: "10.11.105.255"  # Общий broadcast для всех
+      delegate_to: localhost
